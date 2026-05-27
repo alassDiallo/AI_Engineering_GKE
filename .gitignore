@@ -9,6 +9,7 @@ wheels/
 # Virtual environments
 .venv
 # Terraform
+terraform-config
 terraform-config/.terraform/
 terraform-config/*.tfstate
 terraform-config/*.tfstate.*
