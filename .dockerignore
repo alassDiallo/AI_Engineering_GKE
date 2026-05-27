@@ -8,16 +8,7 @@ wheels/
 
 # Virtual environments
 .venv
-# Terraform
-terraform-config/
-terraform-config/.terraform/
-terraform-config/*.tfstate
-terraform-config/*.tfstate.*
-terraform-config/crash.log
-terraform-config/override.tf
-terraform-config/override.tf.json
-terraform-config/*_override.tf
-terraform-config/*_override.tf.json
+
 
 # Python
 __pycache__/
