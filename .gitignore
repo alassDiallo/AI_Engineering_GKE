@@ -8,3 +8,30 @@ wheels/
 
 # Virtual environments
 .venv
+# Terraform
+terraform-config/.terraform/
+terraform-config/*.tfstate
+terraform-config/*.tfstate.*
+terraform-config/crash.log
+terraform-config/override.tf
+terraform-config/override.tf.json
+terraform-config/*_override.tf
+terraform-config/*_override.tf.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.env
+rag-project-496020-770337c796a7.json
+
+# ML
+mlruns/
+artifacts/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
