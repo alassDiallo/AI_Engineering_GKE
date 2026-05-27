@@ -3,13 +3,13 @@ steps:
     args:
       - 'build'
       - '-t'
-      - 'us-central1-docker.pkg.dev/$PROJECT_ID/mlops-repo/app:$COMMIT_SHA'
+      - 'europe-west9-docker.pkg.dev/$PROJECT_ID/mlops-repo/app:$COMMIT_SHA'
       - '.'
 
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - 'us-central1-docker.pkg.dev/$PROJECT_ID/mlops-repo/app:$COMMIT_SHA'
+      - 'europe-west9-docker.pkg.dev/$PROJECT_ID/mlops-repo/app:$COMMIT_SHA'
 
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
@@ -17,7 +17,7 @@ steps:
       - run
       - deploy
       - mlops-app
-      - --image=us-central1-docker.pkg.dev/$PROJECT_ID/mlops-repo/app:$COMMIT_SHA
-      - --region=us-central1
+      - --image=europe-west9-docker.pkg.dev/$PROJECT_ID/mlops-repo/app:$COMMIT_SHA
+      - --region=europe-west9
       - --platform=managed
       - --allow-unauthenticated
