@@ -1,22 +1,23 @@
 steps:
-  - name: hashicorp/terraform:1.9
-    entrypoint: sh
+  - name: 'gcr.io/cloud-builders/docker'
     args:
-      - -c
-      - |
-        cd terraform-config
-        terraform init || exit
-        terraform fmt  || exit
-        terraform validate || exit
+      - 'build'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/mlops-repo/app:$COMMIT_SHA'
+      - '.'
 
-  - name: hashicorp/terraform:1.9
-    entrypoint: sh
+  - name: 'gcr.io/cloud-builders/docker'
     args:
-      - -c
-      - |
-        cd terraform-config
-        terraform plan -no-color || exit
-        terraform apply -auto-approve -no-color || exit
+      - 'push'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/mlops-repo/app:$COMMIT_SHA'
 
-options:
-  logging: CLOUD_LOGGING_ONLY
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - mlops-app
+      - --image=us-central1-docker.pkg.dev/$PROJECT_ID/mlops-repo/app:$COMMIT_SHA
+      - --region=us-central1
+      - --platform=managed
+      - --allow-unauthenticated
