@@ -4,7 +4,7 @@ steps:
     args:
       - -c
       - |
-        cd terraform
+        cd terraform-config
         terraform init
 
   - name: hashicorp/terraform:1.9
@@ -12,7 +12,7 @@ steps:
     args:
       - -c
       - |
-        cd terraform
+        cd terraform-config
         terraform plan
 
 options:
