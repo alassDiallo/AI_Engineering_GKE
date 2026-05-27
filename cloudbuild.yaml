@@ -5,7 +5,9 @@ steps:
       - -c
       - |
         cd terraform-config
-        terraform init
+        terraform init || exit
+        terraform fmt  || exit
+        terraform validate || exit
 
   - name: hashicorp/terraform:1.9
     entrypoint: sh
@@ -13,7 +15,8 @@ steps:
       - -c
       - |
         cd terraform-config
-        terraform plan
+        terraform plan -no-color || exit
+        terraform apply -auto-approve -no-color || exit
 
 options:
   logging: CLOUD_LOGGING_ONLY
