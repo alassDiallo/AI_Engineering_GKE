@@ -36,3 +36,5 @@ artifacts/
 
 # OS
 .DS_Store
+
+.ruff_cache/

@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from db import get_mysql_host
 
 
 class User(BaseModel):
@@ -17,4 +18,11 @@ def accueil():
 
 @app.post("/informations")
 def informations(user: User):
+    """c'est pour afficher les informations de l'utilisateur"""
     return {"message": f"Hello {user.name}, you are {user.age} years old!"}
+
+
+@app.get("/dbconnection")
+def dbconnection():
+    db = get_mysql_host()
+    return {"message": "Connected to database!", "dbInstance": db}
