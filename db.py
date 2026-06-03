@@ -38,7 +38,9 @@ class CommentDB:
                 user=os.environ["MYSQL_USER"],
                 password=os.environ["MYSQL_PASSWORD"],
             )
+
             self.__create_table()
+        self.dbinstance = self.__connection
 
     def __create_table(self):
         """

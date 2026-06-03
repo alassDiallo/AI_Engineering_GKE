@@ -26,7 +26,7 @@ def informations(user: User):
 
 @app.get("/dbconnection")
 def dbconnection():
-    return {"message": "Connected to database!", "dbInstance": comment_db}
+    return {"message": "Connected to database!", "dbInstance": comment_db.dbinstance}
 
 
 @app.post("/get_comments")
