@@ -1,6 +1,8 @@
 FROM python:3.12-slim-trixie
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
+ENV PATH="/root/.local/bin:$PATH"
+
 WORKDIR /app
 
 COPY pyproject.toml uv.lock ./

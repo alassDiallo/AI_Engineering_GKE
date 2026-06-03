@@ -24,6 +24,7 @@ def get_mysql_host():
 
 class CommentDB:
     __connection = None
+    dbinstance = None
 
     def set_connection(self):
         """
