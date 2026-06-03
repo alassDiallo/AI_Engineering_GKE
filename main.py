@@ -15,7 +15,12 @@ app = FastAPI(title="API test")
 
 @app.get("/")
 def accueil():
-    return {"message": "Hello World!"}
+    return {
+        "message": "Hello World!",
+        "status": "success",
+        "code": 200,
+        "data": comment_db,
+    }
 
 
 @app.post("/informations")
