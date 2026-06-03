@@ -35,6 +35,7 @@ class CommentDB:
         if not self.__connection:
             self.__connection = mysql.connector.connect(
                 host=get_mysql_host(),
+                port=3306,
                 database=os.environ["MYSQL_DATABASE"],
                 user=os.environ["MYSQL_USER"],
                 password=os.environ["MYSQL_PASSWORD"],
