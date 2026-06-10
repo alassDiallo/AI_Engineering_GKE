@@ -42,7 +42,7 @@ class CommentDB:
             )
 
             self.__create_table()
-        self.dbinstance = self.__connection
+            self.dbinstance = self.__connection
 
     def __create_table(self):
         """

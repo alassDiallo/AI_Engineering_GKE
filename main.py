@@ -2,7 +2,9 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from db import CommentDB
 
-comment_db = CommentDB().set_connection()
+comment_db = CommentDB()
+
+comment_db.set_connection()
 
 
 class User(BaseModel):
