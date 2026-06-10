@@ -1,5 +1,4 @@
 import os
-import json
 import mysql.connector
 import boto3
 
@@ -79,18 +78,25 @@ class CommentDB:
 
         :return: retourne l'ensemble des commentaires
         """
-        self.set_connection()
+        """self.set_connection()
         cursor = self.__connection.cursor()
         cursor.execute("""
-            SELECT JSON_ARRAYAGG(JSON_OBJECT('name', name, 'comment', comment, 'date', date))
-            FROM comments;
+        # SELECT JSON_ARRAYAGG(JSON_OBJECT('name', name, 'comment', comment, 'date', date))
+        # FROM comments;
         """)
         record = cursor.fetchone()
         result = record[0]
         if result:
             return json.loads(result)
         else:
-            return []
+            return []"""
+        self.set_connection()
+        cursor = self.__connection.cursor(dictionary=True)
+
+        cursor.execute("SELECT name, comment, date FROM comments")
+        rows = cursor.fetchall()
+
+        return rows
 
     def insert_comment(self, name, comment, date):
         """
@@ -103,6 +109,7 @@ class CommentDB:
         self.set_connection()
         cursor = self.__connection.cursor()
         cursor.execute(
-            f"INSERT INTO comments (name, comment, date) VALUES ('{name}', '{comment}', '{date}')"
+            "INSERT INTO comments (name, comment, date) VALUES (%s, %s, %s)",
+            (name, comment, date),
         )
         self.__connection.commit()
