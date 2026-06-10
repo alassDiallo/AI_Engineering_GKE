@@ -21,7 +21,6 @@ def accueil():
         "message": "Hello World!",
         "status": "success",
         "code": 200,
-        "data": comment_db,
     }
 
 
@@ -33,7 +32,7 @@ def informations(user: User):
 
 @app.get("/dbconnection")
 def dbconnection():
-    return {"message": "Connected to database!", "dbInstance": comment_db.dbinstance}
+    return {"message": "Connected to database!"}
 
 
 @app.post("/get_comments")
@@ -57,4 +56,4 @@ def add_comment(name: str, comment: str):
 
     today = date.today()
 
-    return comment_db.add_comment(name, comment, today.strftime("%Y-%m-%d"))
+    return comment_db.insert_comment(name, comment, today.strftime("%Y-%m-%d"))
